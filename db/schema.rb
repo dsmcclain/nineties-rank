@@ -12,13 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2020_12_04_001252) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "contenders", force: :cascade do |t|
     t.string "name"
     t.integer "wins"
     t.integer "losses"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "league_id"
+    t.bigint "league_id"
     t.index ["league_id"], name: "index_contenders_on_league_id"
   end
 
@@ -28,4 +31,5 @@ ActiveRecord::Schema.define(version: 2020_12_04_001252) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "contenders", "leagues"
 end
