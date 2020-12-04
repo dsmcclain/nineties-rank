@@ -1,15 +1,14 @@
 <template>
   <div id="app">
-    <p>{{ message }}</p>
+    <landing></landing>
   </div>
 </template>
 
 <script>
-export default {
-  data: function () {
-    return {
-      message: "Hello Vue!"
-    }
-  }
+  import Landing from './landing.vue'
+
+  export default {
+    name: 'app',
+    components: { Landing },
 }
 </script>
