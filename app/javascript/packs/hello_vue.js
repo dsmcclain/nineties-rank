@@ -6,15 +6,17 @@
 // All it does is render <div>Hello Vue</div> at the bottom of the page.
 
 import Vue from 'vue'
+import Vuex from 'vuex'
+import store from '../vuex/store/store.js'
 import App from '../app.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
+    store: store,
+
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)
-
-  console.log(app)
 })
 
 
