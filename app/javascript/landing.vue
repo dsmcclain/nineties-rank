@@ -15,14 +15,14 @@ export default {
   },
 
   methods: {
-    increment() {
-      this.$store.commit('increment')
-      console.log(this.$store.state.count)
+    populateContenders() {
+      this.$store.dispatch('getContenders')
+      console.log(this.$store.state)
     }
   },
 
   created () {
-    this.increment()
+    this.populateContenders()
   }
 }
 </script>
