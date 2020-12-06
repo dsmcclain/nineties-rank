@@ -1,27 +1,27 @@
 <template>
   <div id="landing">
-    <p>{{ message }}</p>
+    <p>{{ contenders }}</p>
   </div>
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import { passCsrfToken } from '../helpers/helper.js'
 import axios from 'axios'
 
 export default {
   name: 'landing',
 
-  data: function () {
-    return {
-      message: "Hello from the landing page!"
-    }
+  computed: {
+    ...mapGetters(['contenders'])
   },
 
   methods: {
-    populateContenders() {
+    ...mapActions(['getContenders']),
+
+    populateContenders: function () {
       passCsrfToken(document, axios)
-      this.$store.dispatch('getContenders', { number: 1 })
-      console.log(this.$store.state)
+      this.getContenders({ number: 3 })
     }
   },
 

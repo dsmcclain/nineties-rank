@@ -11,12 +11,18 @@ const store = new Vuex.Store({
     contenders: []
   },
 
+  getters: {
+    contenders: state => state.contenders
+  },
+
   actions: {
     getContenders({ commit }, data) {
+      console.log('getting')
       Vue.axios.post('contenders/index', { number: data.number })
         .then((response) => {
           console.log(response)
           if (response.status == 200) {
+            console.log('committing')
             const contenders = response.data
             commit("getContenders", contenders)
           } else {
