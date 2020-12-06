@@ -1,5 +1,5 @@
 class ContendersController < ApplicationController
   def index
-    render json: Contender.all
+    render json: Contender.first(params[:number])
   end
 end

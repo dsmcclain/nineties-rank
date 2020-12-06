@@ -5,6 +5,9 @@
 </template>
 
 <script>
+import { passCsrfToken } from '../helpers/helper.js'
+import axios from 'axios'
+
 export default {
   name: 'landing',
 
@@ -16,7 +19,8 @@ export default {
 
   methods: {
     populateContenders() {
-      this.$store.dispatch('getContenders')
+      passCsrfToken(document, axios)
+      this.$store.dispatch('getContenders', { number: 1 })
       console.log(this.$store.state)
     }
   },
