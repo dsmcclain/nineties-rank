@@ -1,6 +1,8 @@
 <template>
   <div id="landing">
-    <p>{{ contenders }}</p>
+    <div v-for="contender in nextUp" :key="contender.id">
+      <p>{{ contender.name }}</p>
+    </div>
   </div>
 </template>
 
@@ -12,6 +14,12 @@ import axios from 'axios'
 export default {
   name: 'landing',
 
+  data: function () {
+    return {
+      nextUp: []
+    }
+  },
+
   computed: {
     ...mapGetters(['contenders'])
   },
@@ -19,9 +27,14 @@ export default {
   methods: {
     ...mapActions(['getContenders']),
 
-    populateContenders: function () {
+    populateContenders: async function () {
       passCsrfToken(document, axios)
-      this.getContenders({ number: 3 })
+      await this.getContenders({ number: 2 })
+      this.setNext()
+    },
+
+    setNext: function () {
+      this.nextUp = this.contenders.slice(0,2)
     }
   },
 
