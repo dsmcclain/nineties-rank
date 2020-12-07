@@ -1,8 +1,9 @@
 <template>
-  <div id="landing">
-    <div v-for="contender in nextUp" :key="contender.id">
-      <li><contender :contender="contender"></contender></li>
+  <div id="landing" class="landing-container">
+    <div v-for="(contender, index) in nextUp" :key="index" class="contender-container" :id="`cc-${index}`">
+      <div><contender :contender="contender"></contender></div>
     </div>
+    <p class="center-statement">or</p>
   </div>
 </template>
 

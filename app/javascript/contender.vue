@@ -1,5 +1,5 @@
 <template>
-  <div :id="`contender_${contender.id}`">
+  <div class="contender" :id="`contender_${contender.id}`">
     <p>{{ contender.name }}</p>
   </div>
 </template>
