@@ -1,7 +1,7 @@
 <template>
   <div id="landing" class="landing-container">
     <div v-for="(contender, index) in nextUp" :key="index" class="contender-container" :id="`cc-${index}`">
-      <div><contender :contender="contender"></contender></div>
+      <div><contender :contender="contender" v-on:winner="choiceMade"></contender></div>
     </div>
     <p class="center-statement">or</p>
   </div>
@@ -39,6 +39,10 @@ export default {
 
     setNext: function () {
       this.nextUp = this.contenders.slice(0,2)
+    },
+
+    choiceMade: function (id) {
+      console.log(id)
     }
   },
 
