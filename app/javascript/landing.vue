@@ -1,18 +1,21 @@
 <template>
   <div id="landing">
     <div v-for="contender in nextUp" :key="contender.id">
-      <p>{{ contender.name }}</p>
+      <li><contender :contender="contender"></contender></li>
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
-import { passCsrfToken } from '../helpers/helper.js'
-import axios from 'axios'
+import { mapGetters, mapActions }   from 'vuex'
+import { passCsrfToken }            from '../helpers/helper.js'
+import axios                        from 'axios'
+import contender                    from './contender.vue'
 
 export default {
   name: 'landing',
+
+  components: { contender },
 
   data: function () {
     return {
