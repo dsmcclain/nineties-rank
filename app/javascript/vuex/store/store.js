@@ -30,6 +30,17 @@ const store = new Vuex.Store({
         .catch((err) => {
           console.log(err)
         })
+    },
+
+    recordResult({ commit }, data) {
+      console.log('updating', data)
+      Vue.axios.post('contenders/update', { winner: data.winner, loser: data.loser })
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   },
 
