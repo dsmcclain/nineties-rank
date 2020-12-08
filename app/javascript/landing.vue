@@ -20,7 +20,8 @@ export default {
 
   data: function () {
     return {
-      nextUp: []
+      nextUp: [],
+      pairings: []
     }
   },
 
@@ -33,17 +34,47 @@ export default {
 
     populateContenders: async function () {
       passCsrfToken(document, axios)
-      await this.getContenders({ number: 2 })
+      await this.getContenders({ number: 5 })
+      this.pairings = this.setPairings()
       this.setNext()
     },
 
     setNext: function () {
-      this.nextUp = this.contenders.slice(0,2)
+      const match = this.pairings.splice(0,1).flat()
+      this.nextUp = match.map(id => this.contenders.find(c => c.id === id))
     },
 
     choiceMade: function (id) {
       console.log(id)
-    }
+      this.pairings.length > 0 ? this.setNext() : console.log('game over!')
+    },
+
+    setPairings: function () {
+      const pairings = []
+      let players = this.contenders.map(c => c.id)
+      if (players.length % 2 == 1) {
+        players.push(null)
+      }
+
+      const rounds = players.length - 1
+      const half = players.length / 2
+      const playerIndexes = players.map((_, i) => i).slice(1)
+
+      for (let round = 0; round < rounds; round++) {
+        const newIndexes = [0].concat(playerIndexes)
+        const firstHalf = newIndexes.slice(0, half)
+        const secondHalf = newIndexes.slice(half, players.length).reverse()
+
+        for (let i = 0; i < firstHalf.length; i++) {
+          const pairing = [players[firstHalf[i]], players[secondHalf[i]]]
+          if (!pairing.includes(null)) { pairings.push(pairing) }
+        }
+
+        playerIndexes.push(playerIndexes.shift())
+      }
+
+      return pairings
+    },
   },
 
   created () {
