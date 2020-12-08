@@ -4,9 +4,10 @@ class ContendersController < ApplicationController
   end
 
   def update
-    update1 = Contender.find(params[:winner]).increment(:wins, 1)
-    update2 = Contender.find(params[:loser]).increment(:losses, 1)
-    response = [update1, update2]
-    render json: response
+    winner = Contender.find(params[:winner]).increment(:wins, 1)
+    loser = Contender.find(params[:loser]).increment(:losses, 1)
+    response = [winner, loser]
+
+    render json: response if winner.save && loser.save
   end
 end

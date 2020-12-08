@@ -46,7 +46,6 @@ export default {
 
     choiceMade: function (id) {
       this.recordResult({ winner: id, loser: this.nextUp.find(c => c.id != id).id })
-      console.log(id)
       this.pairings.length > 0 ? this.setNext() : console.log('game over!')
     },
 
