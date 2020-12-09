@@ -1,9 +1,14 @@
 <template>
-  <div id="landing" class="landing-container">
-    <div v-for="(contender, index) in nextUp" :key="index" class="contender-container" :id="`cc-${index}`">
-      <div><contender :contender="contender" v-on:winner="choiceMade"></contender></div>
+  <div>
+    <div class="header">
+      <h1>Cereal Rank</h1>
     </div>
-    <p class="center-statement">or</p>
+    <div id="landing" class="landing-container">
+      <div v-for="(contender, index) in nextUp" :key="index" class="contender-container" :id="`cc-${index}`">
+        <div><contender :contender="contender" v-on:winner="choiceMade"></contender></div>
+      </div>
+      <p class="center-statement">or</p>
+    </div>
   </div>
 </template>
 
