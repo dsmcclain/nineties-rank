@@ -7,7 +7,7 @@
 <script>
 
 export default {
-  name: 'contender',
+  name: 'Contender',
 
   props: {
     contender: { type: Object, required: true }

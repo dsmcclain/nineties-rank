@@ -16,13 +16,17 @@ $header-height: 100px;
   color: darkslategrey;
 }
 
-.landing-container {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr;
+.homepage-container {
   background-color: darksalmon;
   height: calc(100vh - #{$header-height});
   padding: 20px;
+}
+
+.game-container {
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: 1fr;
+  margin-top: 8vh;
 }
 
 .contender-container {
@@ -33,16 +37,16 @@ $header-height: 100px;
 }
 
 #cc-0.contender-container {
-  grid-column: 2 / 6;
+  grid-column: 3 / 8;
 }
 
 #cc-1.contender-container {
-  grid-column: 8 / 12;
+  grid-column: 10 / 15;
 }
 
 .center-statement {
   display: grid;
-  grid-column: 6 / 8;
+  grid-column: 8 / 10;
   grid-row: 1;
   display: flex;
   align-items: center;
@@ -50,4 +54,14 @@ $header-height: 100px;
   font-size: 30px;
   font-weight: bold;
   text-transform: uppercase;
+}
+
+@media only screen and (max-width: 1400px) {
+  #cc-0.contender-container {
+    grid-column: 2 / 7;
+  }
+  
+  #cc-1.contender-container {
+    grid-column: 11 / 16;
+  }
 }

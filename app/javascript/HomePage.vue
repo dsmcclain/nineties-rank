@@ -3,11 +3,13 @@
     <div class="header">
       <h1>Cereal Rank</h1>
     </div>
-    <div id="landing" class="landing-container">
-      <div v-for="(contender, index) in nextUp" :key="index" class="contender-container" :id="`cc-${index}`">
-        <div><contender :contender="contender" v-on:winner="choiceMade"></contender></div>
+    <div id="homepage" class="homepage-container">
+      <div :v-if="!gameOver" class="game-container">
+        <div v-for="(contender, index) in nextUp" :key="index" class="contender-container" :id="`cc-${index}`">
+          <div><contender :contender="contender" v-on:winner="choiceMade"></contender></div>
+        </div>
+        <p class="center-statement">or</p>
       </div>
-      <p class="center-statement">or</p>
     </div>
   </div>
 </template>
@@ -16,17 +18,18 @@
 import { mapGetters, mapActions }   from 'vuex'
 import { passCsrfToken }            from '../helpers/helper.js'
 import axios                        from 'axios'
-import contender                    from './contender.vue'
+import Contender                    from './Contender.vue'
 
 export default {
-  name: 'landing',
+  name: 'HomePage',
 
-  components: { contender },
+  components: { Contender },
 
   data: function () {
     return {
       nextUp: [],
-      pairings: []
+      pairings: [],
+      gameOver: false
     }
   },
 
@@ -51,7 +54,7 @@ export default {
 
     choiceMade: function (id) {
       this.recordResult({ winner: id, loser: this.nextUp.find(c => c.id != id).id })
-      this.pairings.length > 0 ? this.setNext() : console.log('game over!')
+      this.pairings.length > 0 ? this.setNext() : this.gameOver = true
     },
 
     setPairings: function () {
