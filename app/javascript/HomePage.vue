@@ -4,11 +4,15 @@
       <h1>Cereal Rank</h1>
     </div>
     <div id="homepage" class="homepage-container">
-      <div :v-if="!gameOver" class="game-container">
+      <div v-if="!gameOver" class="game-container">
         <div v-for="(contender, index) in nextUp" :key="index" class="contender-container" :id="`cc-${index}`">
           <div><contender :contender="contender" v-on:winner="choiceMade"></contender></div>
         </div>
         <p class="center-statement">or</p>
+      </div>
+
+      <div v-if="gameOver">
+        <results></results>
       </div>
     </div>
   </div>
@@ -19,11 +23,12 @@ import { mapGetters, mapActions }   from 'vuex'
 import { passCsrfToken }            from '../helpers/helper.js'
 import axios                        from 'axios'
 import Contender                    from './Contender.vue'
+import Results                      from './Results.vue'
 
 export default {
   name: 'HomePage',
 
-  components: { Contender },
+  components: { Contender, Results },
 
   data: function () {
     return {
