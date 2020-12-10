@@ -3,7 +3,7 @@
     <div class="header">
       <h1>Cereal Rank</h1>
     </div>
-    <div id="homepage" class="homepage-container">
+    <div id="homepage" :class="homePageClass">
       <div v-if="!gameOver" class="game-container">
         <div v-for="(contender, index) in nextUp" :key="index" class="contender-container" :id="`cc-${index}`">
           <div><contender :contender="contender" v-on:winner="choiceMade"></contender></div>
@@ -39,7 +39,11 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['contenders'])
+    ...mapGetters(['contenders']),
+
+    homePageClass: function () {
+      return this.gameOver ? 'homepage-container-with-results' : 'homepage-container'
+    }
   },
 
   methods: {
@@ -47,7 +51,7 @@ export default {
 
     populateContenders: async function () {
       passCsrfToken(document, axios)
-      await this.getContenders({ number: 5 })
+      await this.getContenders()
       this.pairings = this.setPairings()
       this.setNext()
     },
