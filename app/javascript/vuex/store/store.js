@@ -16,8 +16,8 @@ const store = new Vuex.Store({
   },
 
   actions: {
-    getContenders({ commit }, data) {
-      return Vue.axios.post('contenders/index', { number: data.number })
+    getContenders({ commit }) {
+      return Vue.axios.post('contenders/index')
         .then((response) => {
           if (response.status == 200) {
             const contenders = response.data
