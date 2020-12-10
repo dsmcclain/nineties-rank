@@ -6,7 +6,7 @@ $header-height: 100px;
   top: 0;
   height: $header-height;
   display: flex;
-  background: lightsalmon;
+  background:snow;
   z-index: 100;
   box-shadow: 0 8px 6px -6px black;
   justify-content: center;
@@ -16,8 +16,12 @@ $header-height: 100px;
   color: darkslategrey;
 }
 
+.page-title {
+  font-size: 40px;
+}
+
 .homepage-container, .homepage-container-with-results {
-  background-color: darksalmon;
+  background-color: lightskyblue;
   padding: 20px;
 }
 

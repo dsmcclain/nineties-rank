@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-      <h1>Cereal Rank</h1>
+      <h1 class="page-title">!! Cereal Rank !!</h1>
     </div>
     <div id="homepage" :class="homePageClass">
       <div v-if="!gameOver" class="game-container">
