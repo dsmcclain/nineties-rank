@@ -16,10 +16,13 @@ $header-height: 100px;
   color: darkslategrey;
 }
 
-.homepage-container {
+.homepage-container, .homepage-container-with-results {
   background-color: darksalmon;
-  height: calc(100vh - #{$header-height});
   padding: 20px;
+}
+
+.homepage-container {
+  height: calc(100vh - #{$header-height});
 }
 
 .game-container {

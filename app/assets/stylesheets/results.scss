@@ -1,0 +1,33 @@
+.results-table {
+  width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+tr, th {
+  display: flex;
+  align-items: center;
+}
+
+th, td {
+  padding-left:10px;
+  padding-right: 10px;
+}
+
+tr, th, td {
+  min-width: 200px;
+  justify-content: center;
+  text-align: center;
+}
+
+.first-row {
+  min-width: 50px;
+}
+
+td > img {
+  max-width: 100px;
+}
+
+tr {
+  padding-bottom: 10px;
+}
