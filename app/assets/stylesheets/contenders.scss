@@ -4,6 +4,11 @@
 
 .contender {
   padding: 20px;
+  cursor: pointer;
+}
+
+.clicked {
+  background: white;
 }
 
 .contender > img {
