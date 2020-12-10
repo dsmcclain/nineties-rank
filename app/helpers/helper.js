@@ -10,6 +10,12 @@ export default {
 
     getImage(name) {
       return require(`../assets/images/${name}.png`)
+    },
+
+    niceName(name) {
+      return name.replace(/_/g, ' ').replace(/(\w+)/g, function (match) {
+        return match.charAt(0).toUpperCase() + match.slice(1)
+      })
     }
   }
 }

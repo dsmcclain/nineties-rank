@@ -11,8 +11,8 @@
       <div v-for="(contender, index) in sortedContenders" :key="contender.id">
         <tr>
           <td class="first-row">{{index + 1}}</td>
-          <td><img :src="getImage(contender.name)" v-bind:alt="`A box of ${contender.name}`"></th>
-          <td>{{contender.name}}</td>
+          <td><img :src="getImage(contender.name)" v-bind:alt="`A box of ${niceName(contender.name)}`"></td>
+          <td>{{niceName(contender.name)}}</td>
           <td>{{contender.wins}}</td>
           <td>{{contender.losses}}</td>
         </tr>

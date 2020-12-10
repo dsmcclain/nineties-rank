@@ -1,6 +1,6 @@
 <template>
   <div class="contender" :id="`contender_${contender.id}`" @click="$emit('winner', contender.id)">
-    <img :src="getImage(contender.name)" v-bind:alt="`A box of ${contender.name}`">
+    <img :src="getImage(contender.name)" v-bind:alt="`A box of ${niceName(contender.name)}`">
   </div>
 </template>
 
