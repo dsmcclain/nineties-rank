@@ -34,7 +34,7 @@ export default {
     ...mapGetters(['contenders']),
 
     sortedContenders: function () {
-      return this.contenders.sort((a, b) => b.wins - a.wins)
+      return this.contenders.sort((a, b) => b.wins - a.wins || a.losses - b.losses)
     }
   }
 }
