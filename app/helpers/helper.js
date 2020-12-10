@@ -1,7 +1,15 @@
-function csrfToken(document) {
-  return document.querySelector('[name="csrf-token"]').content
-}
+export default {
+  methods: {
+    csrfToken(document) {
+      return document.querySelector('[name="csrf-token"]').content
+    },
 
-export function passCsrfToken(document, axios) {
-  axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken(document)
+    passCsrfToken(document, axios) {
+      axios.defaults.headers.common['X-CSRF-TOKEN'] = this.csrfToken(document)
+    },
+
+    getImage(name) {
+      return require(`../assets/images/${name}.png`)
+    }
+  }
 }

@@ -22,22 +22,19 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters }  from 'vuex'
+import helper          from '../helpers/helper.js'
 
 export default {
   name: 'Results',
+
+  mixins: [helper],
 
   computed: {
     ...mapGetters(['contenders']),
 
     sortedContenders: function () {
       return this.contenders.sort((a, b) => b.wins - a.wins)
-    }
-  },
-
-  methods: {
-    getImage: function (name) {
-      return require(`../assets/images/${name}.png`)
     }
   }
 }

@@ -20,7 +20,7 @@
 
 <script>
 import { mapGetters, mapActions }   from 'vuex'
-import { passCsrfToken }            from '../helpers/helper.js'
+import helper                       from '../helpers/helper.js'
 import axios                        from 'axios'
 import Contender                    from './Contender.vue'
 import Results                      from './Results.vue'
@@ -29,6 +29,8 @@ export default {
   name: 'HomePage',
 
   components: { Contender, Results },
+
+  mixins: [helper],
 
   data: function () {
     return {
@@ -50,7 +52,7 @@ export default {
     ...mapActions(['getContenders', 'recordResult']),
 
     populateContenders: async function () {
-      passCsrfToken(document, axios)
+      this.passCsrfToken(document, axios)
       await this.getContenders()
       this.pairings = this.setPairings()
       this.setNext()
