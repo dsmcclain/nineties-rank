@@ -29,11 +29,28 @@ $header-height: 100px;
   height: calc(100vh - #{$header-height});
 }
 
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.results-toggle-button {
+  padding: 10px 20px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  background: white;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+}
+
 .game-container {
   display: grid;
   grid-template-columns: repeat(16, 1fr);
   grid-template-rows: 1fr;
-  margin-top: 8vh;
+  margin: 8vh 0 6vh 0;
 }
 
 .contender-container {

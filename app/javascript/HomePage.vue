@@ -4,15 +4,19 @@
       <h1 class="page-title">!! Cereal Rank !!</h1>
     </div>
     <div id="homepage" :class="homePageClass">
-      <div v-if="!gameOver" class="game-container">
+      <div v-if="!resultsPage" class="game-container">
         <div v-for="(contender, index) in nextUp" :key="index" class="contender-container" :id="`cc-${index}`">
           <div><contender :contender="contender" v-on:winner="choiceMade"></contender></div>
         </div>
         <p class="center-statement">or</p>
       </div>
 
-      <div v-if="gameOver">
+      <div v-if="resultsPage">
         <results></results>
+      </div>
+
+      <div class="button-container">
+        <button class="results-toggle-button" v-on:click="toggleResults()">{{ buttonText }}</button>
       </div>
     </div>
   </div>
@@ -36,7 +40,8 @@ export default {
     return {
       nextUp: [],
       pairings: [],
-      gameOver: false
+      gameOver: false,
+      showResults: false
     }
   },
 
@@ -44,7 +49,15 @@ export default {
     ...mapGetters(['contenders']),
 
     homePageClass: function () {
-      return this.gameOver ? 'homepage-container-with-results' : 'homepage-container'
+      return this.resultsPage ? 'homepage-container-with-results' : 'homepage-container'
+    },
+
+    resultsPage: function () {
+      return this.gameOver || this.showResults
+    },
+
+    buttonText: function () {
+      return this.resultsPage ? '(back to showdowns)' : '(current standings)'
     }
   },
 
@@ -94,6 +107,10 @@ export default {
 
       return pairings
     },
+
+    toggleResults: function () {
+      this.showResults = !this.showResults
+    }
   },
 
   created () {
